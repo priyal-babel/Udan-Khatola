@@ -1,1 +1,4 @@
 configure.py
+.vscode/*
+!.vscode/settings.json
+__pycache__/
