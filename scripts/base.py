@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from fullScreen import FullScreenApp
+from registration import register
 
 
 top = Tk()
@@ -8,8 +9,8 @@ top.title("Airline Reservation System")
 app = FullScreenApp(top)
 background_image = PhotoImage(file="src/bkg.png")
 
-# def registration():
-#     import register
+def userRegister():
+    register()
 
 background_label = Label(top, image=background_image)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -30,7 +31,7 @@ but1 = Button(
     borderwidth = 10,
     height = 1,
     width=30,
-    #command = registration
+    command = userRegister
     )
  
 but1.place(x=100,y=100)
