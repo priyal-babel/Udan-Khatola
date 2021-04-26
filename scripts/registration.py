@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Tk, Label, messagebox, StringVar, IntVar, Entry, Radiobutton, Button, Listbox
+from tkinter import Tk, Label, messagebox, StringVar, IntVar, Entry, Radiobutton, Button, Listbox, Toplevel
 from configure import user, password
 import MySQLdb
 
@@ -18,9 +18,9 @@ class BLabel(object):
             self.l.config(text=self.l.cget("text") + "\n" + self.b + " "+text)
 
 
-class register:
+class Register:
     def __init__(self):
-        top = Tk()
+        top = Toplevel()
         top.title("Airline Reservation System")
         top.geometry("500x600")
 
@@ -48,11 +48,14 @@ class register:
         g = self.Gender.get()
         Age = self.age.get()
         passw = self.passwor.get()
-
         if self.isFormEmpty() == True:
             messagebox.showerror("Form Empty", "Please enter all details!")
             return
         #con = sqlite3.connect('airline_reservation.db')
+        if '@' not in emailid:
+            messagebox.showerror("Error", "Invalid Email")
+            return
+
         try:
             con = MySQLdb.connect(host='localhost', user=user,
                                   password=password, database="airline_reservation")
@@ -110,7 +113,7 @@ class register:
                 messagebox.showwarning(
                     "Oops", "Email id already registered!")
                 top.destroy()
-                register()
+                Register()
 
         except Exception as e:
             print(e)
@@ -158,7 +161,7 @@ class register:
         label_6 = Label(top, text="Password",
                         width=20, font=("bold", 10))
         label_6.place(x=75, y=400)
-        entry_6 = Entry(top, textvar=self.passwor)
+        entry_6 = Entry(top, textvar=self.passwor,show="*")
         entry_6.place(x=210, y=400)
 
         Lb1 = BLabel(master=top)
