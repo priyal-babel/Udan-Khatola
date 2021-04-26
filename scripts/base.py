@@ -18,6 +18,9 @@ class Main:
     def userRegister(self):
         Register()
 
+    def bookTicket(self):
+        x = 10
+
     def buttons(self,root): 
         but1 = Button(
             root,
@@ -52,7 +55,8 @@ class Main:
             pady=10,
             borderwidth = 10,
             height = 1,
-            width=30
+            width=30,
+            command = self.bookTicket
             )
         
         but2.place(x=100,y=200)
