@@ -161,7 +161,7 @@ class Register:
         label_6 = Label(top, text="Password",
                         width=20, font=("bold", 10))
         label_6.place(x=75, y=400)
-        entry_6 = Entry(top, textvar=self.passwor,show="*")
+        entry_6 = Entry(top, textvar=self.passwor, show="*")
         entry_6.place(x=210, y=400)
 
         Lb1 = BLabel(master=top)

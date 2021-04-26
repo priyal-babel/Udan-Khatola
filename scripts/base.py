@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from fullScreen import FullScreenApp
 from registration import Register
+from bookTicket import Booking
 
 
 class Main:
@@ -19,9 +20,9 @@ class Main:
         Register()
 
     def bookTicket(self):
-        x = 10
+        Booking()
 
-    def buttons(self,root): 
+    def buttons(self, root):
         but1 = Button(
             root,
             bd=0,
@@ -34,13 +35,13 @@ class Main:
             font="arial 12",
             text="Login/Register",
             pady=10,
-            borderwidth = 10,
-            height = 1,
+            borderwidth=10,
+            height=1,
             width=30,
-            command = self.userRegister
-            )
-        
-        but1.place(x=100,y=100)
+            command=self.userRegister
+        )
+
+        but1.place(x=100, y=100)
         but2 = Button(
             root,
             bd=0,
@@ -53,13 +54,13 @@ class Main:
             font="arial 12",
             text="Book a ticket",
             pady=10,
-            borderwidth = 10,
-            height = 1,
+            borderwidth=10,
+            height=1,
             width=30,
-            command = self.bookTicket
-            )
-        
-        but2.place(x=100,y=200)
+            command=self.bookTicket
+        )
+
+        but2.place(x=100, y=200)
 
         but3 = Button(
             root,
@@ -73,10 +74,12 @@ class Main:
             font="arial 12",
             text="Web Checkin",
             pady=10,
-            borderwidth = 10,
-            height = 1,
+            borderwidth=10,
+            height=1,
             width=30
-            )
-        
-        but3.place(x=100,y=300)
+        )
+
+        but3.place(x=100, y=300)
+
+
 Main()
