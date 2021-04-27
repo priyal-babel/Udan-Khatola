@@ -25,5 +25,3 @@ class WebCheckin:
 
         Button(top, text='Submit', width=20, bg='brown',
                fg='white', command=self.checkPNR).place(x=180, y=150)
-
-WebCheckin()

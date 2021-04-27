@@ -3,6 +3,7 @@ from tkinter import *
 from fullScreen import FullScreenApp
 from registration import Register
 from bookTicket import Booking
+from webcheckin import WebCheckin
 
 
 class Main:
@@ -21,6 +22,9 @@ class Main:
 
     def bookTicket(self):
         Booking()
+
+    def checkin(self):
+        WebCheckin()
 
     def buttons(self, root):
         but1 = Button(
@@ -76,7 +80,8 @@ class Main:
             pady=10,
             borderwidth=10,
             height=1,
-            width=30
+            width=30,
+            command = self.checkin
         )
 
         but3.place(x=100, y=300)

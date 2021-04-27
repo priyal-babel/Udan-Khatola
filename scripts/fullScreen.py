@@ -9,6 +9,5 @@ class FullScreenApp(object):
 
     def toggle_geom(self, event):
         geom = self.master.winfo_geometry()
-        print(geom, self._geom)
         self.master.geometry(self._geom)
         self._geom = geom

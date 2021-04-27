@@ -116,7 +116,6 @@ class Register:
                 Register()
 
         except Exception as e:
-            print(e)
             messagebox.showerror("Error", "Error\nUnable to register.")
 
     def buttons(self, top):

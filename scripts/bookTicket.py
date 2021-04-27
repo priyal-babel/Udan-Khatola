@@ -1,7 +1,9 @@
 import json
-from tkinter import Entry, Label, Listbox, Scrollbar, StringVar, Toplevel, ttk, Button
+from tkinter import Button, Entry, Label, Listbox, Scrollbar, StringVar, Toplevel, messagebox, ttk
 from tkcalendar import Calendar, DateEntry
 import datetime
+from selectAirline import Airline
+from tkinter.messagebox import askokcancel
 
 
 class Booking:
@@ -14,13 +16,13 @@ class Booking:
         self.airport_code = []
         self.source = StringVar()
         self.destination = StringVar()
-        self.number = StringVar()
         self.calendar = StringVar()
         self.time = StringVar()
         self.travel_class = StringVar()
 
         self.loadJson()
-        self.widgets(top)
+        self.buttons(top)
+
         top.mainloop()
 
     def loadJson(self):
@@ -31,7 +33,40 @@ class Booking:
             self.airport_names.append(airports["airport_name"])
         data.close()
 
-    def widgets(self, top):
+    def isEmpty(self, booking_dict):
+        if booking_dict["source"] == '':
+            messagebox.showerror("Form Empty", "Please Enter Source Location!")
+            return True
+        elif booking_dict["destination"] == '':
+            messagebox.showerror(
+                "Form Empty", "Please Enter Destination Location!")
+            return True
+        elif booking_dict["time"] == '':
+            messagebox.showerror("Form Empty", "Please Enter Time of Travel!")
+            return True
+        elif booking_dict["travel_class"] == '':
+            messagebox.showerror("Form Empty", "Please Enter Class of Travel!")
+        elif booking_dict["source"] == booking_dict["destination"]:
+            messagebox.showerror(
+                "Form Empty", "Source and destination cannot be same!")
+            return True
+        return False
+
+    def onSubmit(self, top):
+        booking_dict = {
+            "source": self.source.get(),
+            "destination": self.destination.get(),
+            "calendar": self.calendar.get(),
+            "time": self.time.get(),
+            "travel_class": self.travel_class.get()
+        }
+        if(self.isEmpty(booking_dict) == True):
+            return
+        else:
+            top.destroy()
+            Airline(booking_dict)
+
+    def buttons(self, top):
         label = Label(top, text="Flight Booking", padx="3",
                       pady="3", font=("Times New Roman", 25)).pack()
 
@@ -49,10 +84,6 @@ class Booking:
         destination_chosen['values'] = self.airport_names
         destination_chosen.place(x=375, y=105)
         destination_chosen.current()
-
-        # Label(top, text = "Phone Number: ", font=("Times New Roman", 15)).place(x = 180, y = 140)
-        # phone = Entry(top, width=30, textvar=self.number)
-        # phone.place(x=375, y=145)
 
         today = datetime.date.today()
         Label(top, text="Date of Journey: ", font=(
@@ -79,4 +110,4 @@ class Booking:
         class_chosen.current()
 
         Button(top, text='Submit', width=20, bg='brown',
-               fg='white').place(x=300, y=280)
+               fg='white', command=lambda: self.onSubmit(top)).place(x=300, y=280)
