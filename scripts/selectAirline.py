@@ -6,8 +6,8 @@ from PIL import Image, ImageTk
 
 class Airline:
     def __init__(self,booking_ticket):
-        #window = Toplevel()
-        window = Tk()
+        window = Toplevel()
+        #window = Tk()
         window.title("Book a Ticket")
         window.geometry("800x600")
 

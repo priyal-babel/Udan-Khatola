@@ -21,7 +21,7 @@ class BLabel(object):
 class Register:
     def __init__(self):
         top = Toplevel()
-        top.title("Airline Reservation System")
+        top.title("Registaration - Airline Reservation System")
         top.geometry("500x600")
 
         self.first_name = StringVar()
@@ -51,7 +51,6 @@ class Register:
         if self.isFormEmpty() == True:
             messagebox.showerror("Form Empty", "Please enter all details!")
             return
-        #con = sqlite3.connect('airline_reservation.db')
         if '@' not in emailid:
             messagebox.showerror("Error", "Invalid Email")
             return

@@ -4,6 +4,7 @@ from fullScreen import FullScreenApp
 from registration import Register
 from bookTicket import Booking
 from webcheckin import WebCheckin
+from login import Login
 
 
 class Main:
@@ -17,8 +18,8 @@ class Main:
         self.buttons(root)
         root.mainloop()
 
-    def userRegister(self):
-        Register()
+    def userLogin(self):
+        Login()
 
     def bookTicket(self):
         Booking()
@@ -42,7 +43,7 @@ class Main:
             borderwidth=10,
             height=1,
             width=30,
-            command=self.userRegister
+            command=self.userLogin
         )
 
         but1.place(x=100, y=100)
