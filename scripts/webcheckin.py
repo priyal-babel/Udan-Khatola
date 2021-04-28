@@ -15,6 +15,17 @@ class WebCheckin:
 
     def checkPNR(self):
         pnr = self.pnr_value.get()
+        try:
+            con = MySQLdb.connect(host='localhost', user=user,
+                                  password=password, database="airline_reservation")
+            cursor = con.cursor()
+            cursor.execute("SELECT pnr FROM booking")
+            pnr_data = cursor.fetchall()
+            # for data in pnr_data:
+            #     if pnr == data[0]:
+                    # selectSeat()
+        except Exception as e:
+            print(e)
 
     def buttons(self,top):
         label_1 = Label(top, text="Enter PNR number:", width=20, font=("bold", 10))

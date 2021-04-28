@@ -6,3 +6,4 @@ class Invoice:
         # window = Tk()
         window.title("Invoice - Airline Reservation System")
         window.geometry("800x600")
+        window.mainloop()
