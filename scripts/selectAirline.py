@@ -2,12 +2,13 @@ from tkinter import Button, Canvas, Frame, Label, PhotoImage, Tk, Toplevel
 from airlineTypes import airline_type
 import json
 from PIL import Image, ImageTk
+from bookingDetails import Details
 
 
 class Airline:
     def __init__(self,booking_ticket):
         window = Toplevel()
-        #window = Tk()
+        # window = Tk()
         window.title("Book a Ticket")
         window.geometry("800x600")
 
@@ -29,6 +30,15 @@ class Airline:
             if airports["airport_name"]==self.booking_ticket["destination"]:
                 self.destination_city = airports["city_name"]
         data.close()
+
+    def back(self,top):
+        top.destroy()
+        from bookTicket import Booking
+        Booking()
+
+    def confirmBooking(self,details,top):
+        top.destroy()
+        Details(details,self.booking_ticket)
         
     def button(self,window):
         heading = "Flights from "+self.source_city+" to "+self.destination_city
@@ -54,12 +64,18 @@ class Airline:
             Label(window, text="Price:", font=("Times New Roman", 15)).place(x=500, y=15+y_height)
             Label(window, text='₹'+str(airline_type[a]['rate']),bg='WHITE', font=("Times New Roman", 15,'bold')).place(x=500, y=55+y_height)
 
-            Button(window, text='Book', width=10, height=2, bg='brown',
-               fg='white').place(x=650, y=40+y_height)
-
             y_height += 120
 
+        Button(window, text='Book', width=10, height=2, bg='brown',
+               fg='white',command=lambda:self.confirmBooking(airline_type["Vistara"],window)).place(x=650, y=90)
+        Button(window, text='Book', width=10, height=2, bg='brown',
+               fg='white',command=lambda:self.confirmBooking(airline_type["AirAsia"],window)).place(x=650, y=210)
+        Button(window, text='Book', width=10, height=2, bg='brown',
+               fg='white',command=lambda:self.confirmBooking(airline_type["Indigo"],window)).place(x=650, y=330)
+        Button(window, text='Book', width=10, height=2, bg='brown',
+               fg='white',command=lambda:self.confirmBooking(airline_type["Air India"],window)).place(x=650, y=450)
+
         Button(window, text='Change details', width=15, height=2, bg='brown',
-               fg='white').place(x=345, y=545)
+               fg='white',command=lambda:self.back(window)).place(x=345, y=545)
 
 # Airline({'source': 'Amausi Airport', 'destination': 'Bhavnagar Airport', 'calendar': '4/30/21', 'time': '19:30', 'travel_class': 'Economy Class'})

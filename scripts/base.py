@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import *
 from fullScreen import FullScreenApp
-from registration import Register
 from bookTicket import Booking
 from webcheckin import WebCheckin
 from login import Login
+import datetime
 
 
 class Main:

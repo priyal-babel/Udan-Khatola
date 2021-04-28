@@ -33,22 +33,33 @@ class Booking:
             self.airport_names.append(airports["airport_name"])
         data.close()
 
-    def isEmpty(self, booking_dict):
+    def isEmpty(self, booking_dict, top):
         if booking_dict["source"] == '':
-            messagebox.showerror("Form Empty", "Please Enter Source Location!")
+            messagebox.showerror(master=top, title="Form Empty",
+                                 message="Please Enter Source Location!")
+            top.lift()
             return True
+
         elif booking_dict["destination"] == '':
             messagebox.showerror(
-                "Form Empty", "Please Enter Destination Location!")
+                master=top, title="Form Empty", message="Please Enter Destination Location!")
+            top.lift()
             return True
         elif booking_dict["time"] == '':
-            messagebox.showerror("Form Empty", "Please Enter Time of Travel!")
+            messagebox.showerror(master=top, title="Form Empty",
+                                 message="Please Enter Time of Travel!")
+            top.lift()
             return True
         elif booking_dict["travel_class"] == '':
-            messagebox.showerror("Form Empty", "Please Enter Class of Travel!")
+            messagebox.showerror(master=top, title="Form Empty",
+                                 message="Please Enter Class of Travel!")
+            top.lift()
+            return True
+
         elif booking_dict["source"] == booking_dict["destination"]:
             messagebox.showerror(
-                "Form Empty", "Source and destination cannot be same!")
+                master=top, title="Form Empty", message="Source and destination cannot be same!")
+            top.lift()
             return True
         return False
 
@@ -60,7 +71,7 @@ class Booking:
             "time": self.time.get(),
             "travel_class": self.travel_class.get()
         }
-        if(self.isEmpty(booking_dict) == True):
+        if(self.isEmpty(booking_dict, top) == True):
             return
         else:
             top.destroy()

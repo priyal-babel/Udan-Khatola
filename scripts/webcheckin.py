@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import Toplevel, Label, messagebox, StringVar, IntVar, Entry, Radiobutton, Button, Listbox
 from configure import user, password
 import MySQLdb
-from registration import Register
 
 class WebCheckin:
     def __init__(self):

@@ -49,10 +49,12 @@ class Register:
         Age = self.age.get()
         passw = self.passwor.get()
         if self.isFormEmpty() == True:
-            messagebox.showerror("Form Empty", "Please enter all details!")
+            messagebox.showerror(master=top,title="Form Empty",message= "Please enter all details!")
+            top.lift()
             return
         if '@' not in emailid:
-            messagebox.showerror("Error", "Invalid Email")
+            messagebox.showerror(master=top,title="Error",message= "Invalid Email")
+            top.lift()
             return
 
         try:
@@ -68,11 +70,13 @@ class Register:
             if(check):
                 if(len(passw) < 8):
                     messagebox.showwarning(
-                        "Change password", "Password too short!")
+                        master=top,title="Change password",message= "Password too short!")
+                    top.lift()
                     return
                 elif(len(passw) > 20):
                     messagebox.showwarning(
-                        "Change password", "Password too long!")
+                        master=top,title="Change password",message= "Password too long!")
+                    top.lift()
                     return
                 elif(len(passw) >= 8 and len(passw) <= 20):
                     a = b = c = d = 0
@@ -87,35 +91,40 @@ class Register:
                             d = 1
                     if(a != 1):
                         messagebox.showwarning(
-                            "Change password", "Password should contain lower characters!")
+                            master=top,title="Change password",message= "Password should contain lower characters!")
+                        top.lift()
                         return
                     if(c != 1):
                         messagebox.showwarning(
-                            "Change password", "Password should contain upper characters!")
+                            master=top,title="Change password",message= "Password should contain upper characters!")
+                        top.lift()
                         return
                     if(b != 1):
                         messagebox.showwarning(
-                            "Change password", "Password should contain a digit!")
+                            master=top,title="Change password",message= "Password should contain a digit!")
+                        top.lift()
                         return
                     if(d != 1):
                         messagebox.showwarning(
-                            "Change password", "Password should contain $ or # or @!")
+                            master=top,title="Change password",message= "Password should contain $ or # or @!")
+                        top.lift()
                         return
 
                     cursor.execute("INSERT INTO registration VALUES(%s,%s,%s,%s,%s,%s,%s)",
                                    (firstName, lastName, num, emailid, passw, g, Age,))
                     con.commit()
-                    messagebox.showinfo("Registration successful",
-                                        "You have been registered successfully!")
+                    messagebox.showinfo(master=top,title="Registration successful",
+                                        message="You have been registered successfully!")
                     top.destroy()
             else:
                 messagebox.showwarning(
-                    "Oops", "Email id already registered!")
+                    master=top,title="Oops",message= "Email id already registered!")
                 top.destroy()
                 Register()
 
         except Exception as e:
-            messagebox.showerror("Error", "Error\nUnable to register.")
+            messagebox.showerror(master=top,title="Error",message= "Error\nUnable to register.")
+            top.lift()
 
     def buttons(self, top):
         label_0 = Label(top, text="Registration Form",

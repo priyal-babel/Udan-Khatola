@@ -2,12 +2,12 @@ import MySQLdb
 from configure import user, password
 from tkinter import Button, Checkbutton, Entry, IntVar, Label, StringVar, Tk, Toplevel, messagebox 
 from registration import Register
-
+from loggedIn import PastBookings
 
 class Login:
     def __init__(self):
-        # root = Toplevel()
-        root = Tk()
+        root = Toplevel()
+        #root = Tk()
         root.title("Login System - Airline Reservation System")
         root.geometry("400x300")
 
@@ -32,7 +32,8 @@ class Login:
 
     def database(self,root):
         if self.email.get()=='':
-            messagebox.showerror("Form Empty", "Please enter email id!")
+            messagebox.showerror(master=root,title="Form Empty", message="Please enter email id!")
+            root.lift()
             return
         try:
             con = MySQLdb.connect(host='localhost', user=user,
@@ -44,16 +45,21 @@ class Login:
             for each in registered_email:
                 if each[0]==self.email.get():
                     if each[1]==self.passwor.get():
-                        messagebox.showinfo("Welcome","You have been logged in!")
+                        messagebox.showinfo(master=root,title="Welcome",message="You have been logged in!")
+                        root.destroy()
+                        PastBookings(self.email.get())
                         return
                     else:
-                        messagebox.showerror("","Incorrect password")
+                        messagebox.showerror(master=root,title="",message="Incorrect password")
+                        root.lift()
                         return
-            messagebox.showwarning("Please register","Email id not registered. Register now!")
+            messagebox.showwarning(master=root,title="Please register",message="Email id not registered. Register now!")
+            root.lift()
 
         except Exception as e:
             print(e)
-            messagebox.showerror("Error", "Error\nUnable to login.")
+            messagebox.showerror(master=root,title="Error",message= "Error\nUnable to login.")
+            root.lift()
 
     def buttons(self, root):
         Label(root, text="Login", font=("Times New Roman", 25,'bold')).place(x=150, y=20)
