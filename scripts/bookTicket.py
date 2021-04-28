@@ -67,7 +67,7 @@ class Booking:
         booking_dict = {
             "source": self.source.get(),
             "destination": self.destination.get(),
-            "calendar": self.calendar.get(),
+            "date": self.calendar.get(),
             "time": self.time.get(),
             "travel_class": self.travel_class.get()
         }

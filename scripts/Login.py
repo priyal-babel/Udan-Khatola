@@ -2,7 +2,7 @@ import MySQLdb
 from configure import user, password
 from tkinter import Button, Checkbutton, Entry, IntVar, Label, StringVar, Tk, Toplevel, messagebox 
 from registration import Register
-from loggedIn import PastBookings
+from pastBookings import PastBookings
 
 class Login:
     def __init__(self):

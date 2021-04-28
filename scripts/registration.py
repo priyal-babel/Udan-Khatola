@@ -123,6 +123,7 @@ class Register:
                 Register()
 
         except Exception as e:
+            print(e)
             messagebox.showerror(master=top,title="Error",message= "Error\nUnable to register.")
             top.lift()
 

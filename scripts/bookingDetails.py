@@ -7,6 +7,7 @@ import MySQLdb
 import string
 import random
 
+
 class Details:
     def __init__(self, details, travel_details):
         window = Toplevel()
@@ -49,14 +50,14 @@ class Details:
     def generatePNR(self):
         lower = list(string.ascii_lowercase)
         upper = list(string.ascii_uppercase)
-        number = ['0','1','2','3','4','5','6','7','8','9']
+        number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         final_list = lower+upper+number
         pnr = ''
         for _ in range(6):
             pnr += random.choice(final_list)
         return pnr
 
-    def onSubmit(self,top):
+    def onSubmit(self, top):
         check = True
         firstName = self.first_name.get()
         lastName = self.last_name.get()
@@ -68,25 +69,29 @@ class Details:
         pnr = self.generatePNR()
 
         if self.isFormEmpty() == True:
-            messagebox.showerror(master=top,title="Form Empty",message= "Please enter all details!")
+            messagebox.showerror(master=top, title="Form Empty",
+                                 message="Please enter all details!")
             top.lift()
             return
         if '@' not in emailid:
-            messagebox.showerror(master=top,title="Error",message= "Invalid Email")
+            messagebox.showerror(master=top, title="Error",
+                                 message="Invalid Email")
             top.lift()
             return
         try:
             con = MySQLdb.connect(host='localhost', user=user,
                                   password=password, database="airline_reservation")
             cursor = con.cursor()
-            cursor.execute("INSERT INTO booking VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",(firstName,lastName,num,emailid,address,gender,age,pnr))
+            cursor.execute("INSERT INTO booking VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                           (firstName, lastName, num, emailid, address, gender, age, pnr, self.source_city, self.destination_city, self.travel_details["date"], self.travel_details["time"], self.airline_details["name"],self.travel_details["travel_class"]))
             con.commit()
-            messagebox.showinfo(master=top,title="Booking successful",
-                                        message="Your ticket has been booked successfully!")
+            messagebox.showinfo(master=top, title="Booking successful",
+                                message="Your ticket has been booked successfully!")
             top.destroy()
 
         except Exception as e:
-            messagebox.showerror(master=top,title="Error",message= "Error\nUnable to book.")
+            messagebox.showerror(master=top, title="Error",
+                                 message="Error\nUnable to book.")
             top.lift()
 
     def widgets(self, window):
@@ -116,6 +121,9 @@ class Details:
         img.image = render
         img.place(x=385, y=110)
 
+        Label(window, text="Time: "+self.travel_details["time"],bg="WHITE", font=(
+            "Times New Roman", 10)).place(x=385, y=170)
+
         Label(window, text="ARRIVAL", font=(
             "Times New Roman", 10)).place(x=500, y=90)
         Label(window, text=self.destination_city, bg='WHITE', font=(
@@ -126,9 +134,13 @@ class Details:
         Label(window, text="RATE", font=(
             "Times New Roman", 10)).place(x=660, y=90)
         Label(window, text="₹"+str(self.airline_details["rate"]), bg='WHITE', font=(
-            "Times New Roman", 22)).place(x=625, y=115, width=100)
+            "Times New Roman", 15)).place(x=625, y=115, width=100)
+        Label(window, text="DATE", font=(
+            "Times New Roman", 10)).place(x=660, y=140)
+        Label(window, text=str(self.travel_details["date"]), bg='WHITE', font=(
+            "Times New Roman", 10)).place(x=625, y=165, width=100)
 
-    def inputDetails(self,window):
+    def inputDetails(self, window):
         Label(window, text="First Name:", font=(
             "Times New Roman", 15)).place(x=60, y=220)
         Entry(window, width=30, textvar=self.first_name).place(x=200, y=225)
@@ -149,7 +161,8 @@ class Details:
             "Times New Roman", 15)).place(x=410, y=340)
         Entry(window, width=30, textvar=self.phone).place(x=550, y=345)
 
-        Label(window, text="Gender:", font=("Times New Roman", 15)).place(x=60, y=400)
+        Label(window, text="Gender:", font=(
+            "Times New Roman", 15)).place(x=60, y=400)
         Radiobutton(window, text="Male", padx=5, variable=self.Gender,
                     value=1).place(x=205, y=405)
         Radiobutton(window, text="Female", padx=5,
@@ -162,4 +175,4 @@ class Details:
         Entry(window, width=10, textvar=self.age).place(x=200, y=465)
 
         Button(window, text='Submit', width=15, height=2, bg='brown',
-               fg='white',command=lambda:self.onSubmit(window)).place(x=345, y=510)
+               fg='white', command=lambda: self.onSubmit(window)).place(x=345, y=510)
