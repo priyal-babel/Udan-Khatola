@@ -34,3 +34,6 @@ cursor = con.cursor()
 
 # command = "ALTER TABLE booking ADD class varchar(20);"
 # cursor.execute(command)
+
+# command = "ALTER TABLE booking ADD seat varchar(3);"
+# cursor.execute(command)

@@ -12,7 +12,7 @@ class Details:
     def __init__(self, details, travel_details):
         window = Toplevel()
         # window = Tk()
-        window.title("Confirm booking - Airline Reservation System")
+        window.title("Confirm booking - Udan Khatola")
         window.geometry("800x600")
 
         self.airline_details = details
@@ -82,14 +82,15 @@ class Details:
             con = MySQLdb.connect(host='localhost', user=user,
                                   password=password, database="airline_reservation")
             cursor = con.cursor()
-            cursor.execute("INSERT INTO booking VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                           (firstName, lastName, num, emailid, address, gender, age, pnr, self.source_city, self.destination_city, self.travel_details["date"], self.travel_details["time"], self.airline_details["name"],self.travel_details["travel_class"]))
+            cursor.execute("INSERT INTO booking(firstname,lastname,phonenumber, emailid, address,gender, age,pnr,source,destination,date,time,airline_name,class) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                           (firstName, lastName, num, emailid, address, gender, age, pnr, self.source_city, self.destination_city, self.travel_details["date"], self.travel_details["time"], self.airline_details["name"], self.travel_details["travel_class"]))
             con.commit()
             messagebox.showinfo(master=top, title="Booking successful",
                                 message="Your ticket has been booked successfully!")
             top.destroy()
 
         except Exception as e:
+            print(e)
             messagebox.showerror(master=top, title="Error",
                                  message="Error\nUnable to book.")
             top.lift()
@@ -121,8 +122,8 @@ class Details:
         img.image = render
         img.place(x=385, y=110)
 
-        Label(window, text="Time: "+self.travel_details["time"],bg="WHITE", font=(
-            "Times New Roman", 10)).place(x=385, y=170)
+        Label(window, text="Time: "+self.travel_details["time"], bg="WHITE", font=(
+            "Times New Roman", 8)).place(x=385, y=168)
 
         Label(window, text="ARRIVAL", font=(
             "Times New Roman", 10)).place(x=500, y=90)

@@ -10,7 +10,7 @@ import datetime
 class Main:
     def __init__(self):
         root = Tk()
-        root.title("Airline Reservation System")
+        root.title("Udan Khatola")
         app = FullScreenApp(root)
         background_image = PhotoImage(file="src/bkg.png")
         background_label = Label(root, image=background_image)

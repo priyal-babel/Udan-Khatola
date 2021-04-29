@@ -8,7 +8,7 @@ class Login:
     def __init__(self):
         root = Toplevel()
         #root = Tk()
-        root.title("Login System - Airline Reservation System")
+        root.title("Login System - Udan Khatola")
         root.geometry("400x300")
 
         self.email = StringVar()

@@ -9,7 +9,7 @@ from tkinter.messagebox import askokcancel
 class Booking:
     def __init__(self):
         top = Toplevel()
-        top.title("Book a Ticket - Airline Reservation System")
+        top.title("Book a Ticket - Udan Khatola")
         top.geometry("800x350")
 
         self.airport_names = []

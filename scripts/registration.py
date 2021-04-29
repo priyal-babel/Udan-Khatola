@@ -21,7 +21,7 @@ class BLabel(object):
 class Register:
     def __init__(self):
         top = Toplevel()
-        top.title("Registaration - Airline Reservation System")
+        top.title("Registaration - Udan Khatola")
         top.geometry("500x600")
 
         self.first_name = StringVar()
