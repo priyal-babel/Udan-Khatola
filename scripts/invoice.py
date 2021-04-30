@@ -7,8 +7,8 @@ from airlineTypes import airline_type
 
 class Invoice:
     def __init__(self,pnr):
-        # window = Toplevel()
-        window = Tk()
+        window = Toplevel()
+        # window = Tk()
         window.title("Invoice - Udan Khatola")
         window.geometry("800x600")
 
@@ -53,7 +53,7 @@ class Invoice:
         Label(top, text="INVOICE",bg='WHITE', font=("Times New Roman", 30)).place(x=300, y=10)
 
         Label(top, text=self.data[8], font=("Times New Roman", 25)).place(x=100, y=100,width=200)
-        Label(top, text="("+self.source_airport+")",fg='grey', font=("Times New Roman", 15)).place(x=50, y=150,width=300)
+        Label(top, text="("+self.source_airport+")",fg='grey', font=("Times New Roman", 15)).place(x=50, y=150,width=350)
 
         load = Image.open("src/arrow.png")
         load = load.resize((70, 40), Image.ANTIALIAS)
@@ -63,7 +63,7 @@ class Invoice:
         img.place(x=360, y=105)
 
         Label(top, text=self.data[9], font=("Times New Roman", 25)).place(x=500, y=100,width=200)
-        Label(top, text="("+self.destination_airport+")",fg='grey', font=("Times New Roman", 15)).place(x=450, y=150,width=300)
+        Label(top, text="("+self.destination_airport+")",fg='grey', font=("Times New Roman", 15)).place(x=450, y=150,width=350)
 
         logo = airline_type[self.data[12]]["logo"]
         load = Image.open(logo)
@@ -93,4 +93,4 @@ class Invoice:
         Label(top, text="Amount Paid: ", font=("Times New Roman", 15)).place(x=450, y=500)
         Label(top, text="₹ "+str(rate), font=("Times New Roman", 15)).place(x=575, y=500)
 
-Invoice('Ohvgs9')
+# Invoice('Ohvgs9')

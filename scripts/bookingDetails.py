@@ -88,8 +88,8 @@ class Details:
             con.commit()
             messagebox.showinfo(master=top, title="Booking successful",
                                 message="Your ticket has been booked successfully!")
-            Invoice(pnr)
             top.destroy()
+            Invoice(pnr)
 
         except Exception as e:
             print(e)

@@ -35,43 +35,38 @@ class PastBookings:
             Label(top, text="Class",bg='GRAY', font=("Times New Roman", 10)).place(x=700, y=80)
 
             y_height = 100
-            i=0
+            flag = 0
             for users in data:
                 if users[3]==self.user_email:
-                    if i%2==0:
-                        frame = Frame(top,height = 30,width = 800, borderwidth = 1, relief = 'sunken').place(y = y_height)
-                        rel = 'ridge'
-                        i += 1
-                    else:
-                        frame = Frame(top,height = 30,width = 800, borderwidth = 1, relief = 'raised').place(y = y_height)
-                        rel = 'raised'
-                        i += 1
+                    flag += 1
+                    frame = Frame(top,height = 30,width = 800, borderwidth = 1, relief = 'sunken').place(y = y_height)
+                    rel = 'ridge'
                     btn = Label(top, text=users[12],relief=rel,font=('Times New Roman',12),padx=2,pady=3,width=10)
-                    btn.place(y=100)
+                    btn.place(y=y_height)
                     btn = Label(top, text=users[8],relief=rel,font=('Times New Roman',12),padx=2,pady=3,width=15)
-                    btn.place(x=97,y=100)
+                    btn.place(x=97,y=y_height)
                     btn = Label(top, text=users[9],relief=rel,font=('Times New Roman',12),padx=2,pady=3,width=15)
-                    btn.place(x=220,y=100)
+                    btn.place(x=220,y=y_height)
                     btn = Label(top, text=users[11],relief=rel,font=('Times New Roman',12),padx=1,pady=3,width=6)
-                    btn.place(x=351,y=100)
+                    btn.place(x=351,y=y_height)
                     btn = Label(top, text=users[10],relief=rel,font=('Times New Roman',12),padx=1,pady=3,width=8)
-                    btn.place(x=410,y=100)
+                    btn.place(x=410,y=y_height)
                     btn = Label(top, text=users[7],relief=rel,font=('Times New Roman',12),padx=1,pady=3,width=8)
-                    btn.place(x=486,y=100)
+                    btn.place(x=486,y=y_height)
                     if users[14]==None:
                         btn = Label(top, text='-',relief=rel,font=('Times New Roman',12),padx=1,pady=3,width=8)
-                        btn.place(x=563,y=100)
+                        btn.place(x=563,y=y_height)
                     else:
-                        btn = Label(top, text=users[10],relief=rel,font=('Times New Roman',12),padx=1,pady=3,width=8)
-                        btn.place(x=563,y=100)
+                        btn = Label(top, text=users[-1],relief=rel,font=('Times New Roman',12),padx=1,pady=3,width=8)
+                        btn.place(x=563,y=y_height)
                     btn = Label(top, text=users[13],relief=rel,font=('Times New Roman',12),padx=1,pady=3,width=17)
-                    btn.place(x=640,y=100)
+                    btn.place(x=640,y=y_height)
                     
                     y_height += 30
-                    return
                 else:
                     pass
-            Label(top, text="No Bookings Found!", font=("Times New Roman", 30)).place(x=230, y=150)
+            if flag==0:
+                Label(top, text="No Bookings Found!", font=("Times New Roman", 30)).place(x=230, y=150)
 
         except Exception as e:
              print(e)
