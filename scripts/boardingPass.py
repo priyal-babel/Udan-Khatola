@@ -79,7 +79,7 @@ class BoardingPass:
         lbl13.place(x=417, y=180, width = 100, anchor='ne')
 
         Label(top, text='Seat No:',bg='yellow', font=('Times New Roman', 20)).place(x=470, y=220, anchor='ne')
-        Label(top, text=self.data[-1],bg='yellow', font=('Times New Roman', 20)).place(x=508, y=220, anchor='ne')
+        Label(top, text=self.data[-1],bg='yellow', font=('Times New Roman', 20)).place(x=515, y=220, anchor='ne',width=50)
 
 
 # BoardingPass('0EIqFy')

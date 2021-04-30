@@ -31,7 +31,8 @@ class WebCheckin:
                         SelectSeat(pnr)
                         return
                     else:
-                         BoardingPass(pnr)
+                        top.destroy()
+                        BoardingPass(pnr)
             messagebox.showerror(
                 master=top, title="Error", message="Invalid PNR")
             top.lift()

@@ -1,5 +1,6 @@
 from tkinter import Button, Canvas, Frame, Label, Tk, Toplevel, messagebox
 from configure import user,password
+from boardingPass import BoardingPass
 import MySQLdb
 
 class SelectSeat:
@@ -40,7 +41,7 @@ class SelectSeat:
             messagebox.showinfo(master=top, title="Success",
                                 message="Your seat has been selected successfully!")
             top.destroy()
-            # BoardingPass()
+            BoardingPass(self.pnr)
         except Exception as e:
             print(e)
             messagebox.showerror(master=top,title="Error",message="Could not select seat!")
