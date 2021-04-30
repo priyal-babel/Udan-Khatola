@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import Button, Entry, IntVar, Label, Listbox, Radiobutton, StringVar, Tk, Toplevel, messagebox
 from configure import user, password
 from seatSelection import SelectSeat
+from boardingPass import BoardingPass
 import MySQLdb
 
 class WebCheckin:
@@ -29,8 +30,8 @@ class WebCheckin:
                         top.destroy()
                         SelectSeat(pnr)
                         return
-                    # else:
-                    #     BoardingPass()
+                    else:
+                         BoardingPass(pnr)
             messagebox.showerror(
                 master=top, title="Error", message="Invalid PNR")
             top.lift()
