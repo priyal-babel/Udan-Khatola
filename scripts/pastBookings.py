@@ -34,7 +34,6 @@ class PastBookings:
             Label(top, text="Seat No.",bg='GRAY', font=("Times New Roman", 10)).place(x=580, y=80)
             Label(top, text="Class",bg='GRAY', font=("Times New Roman", 10)).place(x=700, y=80)
 
-
             y_height = 100
             i=0
             for users in data:

@@ -6,6 +6,7 @@ from configure import user, password
 import MySQLdb
 import string
 import random
+from invoice import Invoice
 
 
 class Details:
@@ -87,6 +88,7 @@ class Details:
             con.commit()
             messagebox.showinfo(master=top, title="Booking successful",
                                 message="Your ticket has been booked successfully!")
+            Invoice(pnr)
             top.destroy()
 
         except Exception as e:
