@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Tk, Label, messagebox, StringVar, IntVar, Entry, Radiobutton, Button, Listbox, Toplevel
+from tkinter import Tk, Label, messagebox, StringVar, IntVar, Entry, Radiobutton, Button, Listbox, Toplevel, Checkbutton
 from configure import user, password
 import MySQLdb
 
@@ -22,7 +22,7 @@ class Register:
     def __init__(self):
         top = Toplevel()
         top.title("Registaration - Udan Khatola")
-        top.geometry("500x600")
+        top.geometry("500x650+400+25")
 
         self.first_name = StringVar()
         self.last_name = StringVar()
@@ -31,9 +31,17 @@ class Register:
         self.Gender = IntVar()
         self.age = StringVar()
         self.passwor = StringVar()
+        self.checkButton = IntVar()
 
         self.buttons(top)
         top.mainloop()
+
+    def checkbox(self, root):
+        self.check_value = self.checkButton.get()
+        if self.check_value == 0:
+            self.entry_6.configure(show="*")
+        else:
+            self.entry_6.configure(show="")
 
     def isFormEmpty(self):
         if(self.first_name.get() == '' or self.last_name.get() == '' or self.email.get() == '' or self.number.get() == '' or self.Gender.get() == 0 or self.age.get() == '' or self.passwor == ''):
@@ -169,8 +177,15 @@ class Register:
         label_6 = Label(top, text="Password",
                         width=20, font=("bold", 10))
         label_6.place(x=75, y=400)
-        entry_6 = Entry(top, textvar=self.passwor, show="*")
-        entry_6.place(x=210, y=400)
+        self.entry_6 =Entry(top, textvar=self.passwor, show="*")
+        self.entry_6.place(x=210, y=400)
+        Checkbutton(top, text = "Show password", 
+                    variable = self.checkButton,
+                    onvalue = 1,
+                    offvalue = 0,
+                    height = 2,
+                    width = 10,
+                    command = lambda: self.checkbox(top)).place(x=210,y=420)
 
         Lb1 = BLabel(master=top)
         Lb1.add_option("At least 1 letter between [a-z]")
@@ -179,7 +194,11 @@ class Register:
         Lb1.add_option("At least 1 character from [$#@]")
         Lb1.add_option("Minimum length of password: 8")
         Lb1.add_option("Maximum length of password: 15")
-        Lb1.l.place(x=155, y=430)
+        Lb1.l.place(x=155, y=460)
+        
 
         Button(top, text='Submit', width=20, height=2, bg='brown',
-               fg='white', command=lambda: self.database(top)).place(x=180, y=530)
+               fg='white', command=lambda: self.database(top)).place(x=180, y=560)
+
+
+# Register()
