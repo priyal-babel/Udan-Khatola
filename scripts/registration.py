@@ -124,6 +124,8 @@ class Register:
                     messagebox.showinfo(master=top,title="Registration successful",
                                         message="You have been registered successfully!")
                     top.destroy()
+                    from login import Login
+                    Login()
             else:
                 messagebox.showwarning(
                     master=top,title="Oops",message= "Email id already registered!")
