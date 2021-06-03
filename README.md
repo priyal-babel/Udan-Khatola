@@ -44,20 +44,20 @@ Screenshots of the project
 ![picture](screenshots/img1.png)
 <div align="center">
 <div>
-  <img src="screenshots/img2.png" width="300"/>
+  <img src="screenshots/img2.png" width="250"/>
   <img src="screenshots/img3.png" width="600"/>
 </div>
   <br>
  <div>
-  <img src="screenshots/img4.png" width="400"/>
-  <img src="screenshots/img5.png" width="400"/>
+  <img src="screenshots/img4.png" width="380"/>
+  <img src="screenshots/img5.png" width="380"/>
  </div>
   <br>
 <img src="screenshots/img6.png" width="600"/>
 <br>
 <div>
   <img src="screenshots/img7.png" width="200"/>
-  <img src="screenshots/img8.png" width="600"/>
+  <img src="screenshots/img8.png" width="550"/>
 </div>
 
 </div>
