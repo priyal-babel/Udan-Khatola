@@ -47,4 +47,3 @@ password = 'password'
 <h2 align="center">
 Screenshots of the project
 </h2>
-![img](https://github.com/priyal-babel/Udan-Khatola/blob/main/screenshots/img1.png)
